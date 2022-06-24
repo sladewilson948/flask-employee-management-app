@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&family=Notable&display=swap" rel="stylesheet">
+    <title>Web Form</title>
+    <style>
+                    div.container
+            {
+                font-family: 'MuseoModerno', cursive;
+                font-size: 20px;
+            }
+            
+    </style>
+</head>
+<body>
+    <div class="container my-3">
+        <br>
+        <h2 style="text-align: center;">
+            Employee Management System
+        </h2>
+        <br>
+    <form action="/" method="POST">
+        <div class="mb-3 row">
+            <label for="Name" class="col-sm-2 col-form-label">Name</label>
+            <br>
+            <div class="col-sm-10">
+                <input type="text" class="form-control-plaintext" name="name" id="Name" placeholder="Enter your name" style="border: 2px solid black;" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="Age" class="col-sm-2 col-form-label">Age</label>
+            <br>
+            <div class="col-sm-10">
+                <input type="text" class="form-control-plaintext" name="age" id="Age" placeholder="Enter your age" style="border: 2px solid black;" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="City" class="col-sm-2 col-form-label">City</label>
+            <br>
+            <div class="col-sm-10">
+                <input type="text" class="form-control-plaintext" name="city" id="City" placeholder="Enter your city name" style="border: 2px solid black;" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            
+              <label for="JobRole" class="col-sm-2 col-form-label">Job Role</label>
+            
+            <select id="role" name="job_role" required style="color: #080808; border: 2px solid black;">
+              <option value="" disabled selected style="color: #962828;">Select Job Role</option>
+              <option value="SDE">SDE</option>
+              <option value="SDE-1">SDE-1</option>
+              <option value="SDE-2">SDE-2</option>
+              <option value="SDE-3">SDE-3</option>
+              <option value="SDET">SDET</option>
+              <option value="Data Engineer">Data Engineer</option>
+            </select>
+          </div>
+        <div class="mb-3 row">
+            <label for="Country" class="col-sm-2 col-form-label">Country</label>
+            <br>
+            <div class="col-sm-10">
+                <input type="text" class="form-control-plaintext" name="country" id="Country" placeholder="Enter your country name" style="border: 2px solid black;" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+    </div>
+
+    <div class="container my-5">
+        {% if data|length==0 %}
+            <div class="alert alert-primary" role="alert">
+                No Data To Display
+            </div>
+        {% else %}
+        <table class="table table-dark table-striped table-hover" style="table-layout: fixed; font-size: 15px;">
+            <thead>
+                <tr>
+                    <th scope="col">Index</th>
+                    <th scope="col" style="word-wrap: break-word;">Name</th>
+                    <th scope="col" style="word-wrap: break-word;">Age</th>
+                    <th scope="col" style="word-wrap: break-word;">City</th>
+                    <th scope="col" style="word-wrap: break-word;">Job Role</th>
+                    <th scope="col" style="word-wrap: break-word;">Country</th>
+                    <th scope="col" style="word-wrap: break-word;">Action</th>
+                </tr>
+            </thead>
+            
+                
+            
+            <tbody>
+            {% for i in data %}
+                    <tr>
+                        
+                        <th scope="row" style="word-wrap: break-word;">{{loop.index}}</th>
+                        <td style="word-wrap: break-word;">{{i["Name"]}}</td>
+                        <td style="word-wrap: break-word;">{{i["Age"]}}</td>
+                        <td style="word-wrap: break-word;">{{i["City"]}}</td>
+                        <td style="word-wrap: break-word;">{{i["Job Role"]}}</td>
+                        <td style="word-wrap: break-word;">{{i["Country"]}}</td>
+                        <td style="word-wrap: break-word;"><a href="/delete/{{i["_id"]}}" type="button" class="btn btn-danger btn-sm mx-2">Delete</button><a href="/update/{{i["_id"]}}" type="button" class="btn btn-danger btn-sm mx-2">Update</button</td>
+                    </tr>
+            
+            {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
