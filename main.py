@@ -38,7 +38,7 @@ def index():
 
 
         collection.insert_one(data_dict)
-
+    all_data = list(collection.find())
     
     return render_template("index.html", data=all_data[::-1])
 
