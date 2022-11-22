@@ -39,9 +39,7 @@ def index():
 
         collection.insert_one(data_dict)
 
-    print("Hello World!")
-    all_data = list(collection.find())
-    print(all_data)
+    
     return render_template("index.html", data=all_data[::-1])
 
 @app.route("/delete/<id>")
