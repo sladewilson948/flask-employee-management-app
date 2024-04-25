@@ -11,7 +11,7 @@ import pymongo
 app = Flask(__name__)
 
 #setting up connection with mongodb
-client = pymongo.MongoClient(f"mongodb+srv://aman_dubey:yqkfEuVmLiuE2gIX@cluster0.blf16va.mongodb.net/")
+client = pymongo.MongoClient()
 db = client["test-database"]
 collection = db["flask-data-collection-from-user"]
 
