@@ -3,18 +3,20 @@
 
 from flask import Flask, redirect, render_template, request
 from bson.objectid import ObjectId
+import os
+from dotenv import load_dotenv
 import pymongo
 
-
+load_dotenv()
 
 
 app = Flask(__name__)
 
 #setting up connection with mongodb
-client = pymongo.MongoClient()
+connection_string = os.getenv("MONGODB_URI")
+client = pymongo.MongoClient(connection_string)
 db = client["test-database"]
 collection = db["flask-data-collection-from-user"]
-
 
 
 @app.route("/", methods=["GET", "POST"])
